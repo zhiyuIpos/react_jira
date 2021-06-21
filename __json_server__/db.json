@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "鬼怪"
+    },
+    {
+      "id": 2,
+      "name": "猪头肉"
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "name": "骑手管理",
+      "personId": 1,
+      "organization": "外卖组",
+      "created": 1604989757139
+    },
+    {
+      "id": 2,
+      "name": "物品管理",
+      "personId": 2,
+      "organization": "物品组",
+      "created": 1604987757139
+    }
+  ]
+}
