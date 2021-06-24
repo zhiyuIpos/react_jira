@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@craco/craco": "^6.1.2",
+    "@emotion/react": "^11.4.0",
+    "@emotion/styled": "^11.3.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -10,6 +13,10 @@
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "antd": "^4.16.5",
+    "craco-less": "^1.17.1",
+    "dayjs": "^1.10.5",
+    "jira-dev-tool": "^1.6.59",
     "qs": "^6.10.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -18,11 +25,11 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "serve": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "serve": "craco start",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject",
-    "json-server": "json-server __json_server__/db.json --watch --port 3001"
+    "json-server": "json-server __json_server__/db.json --watch --port 3001 --middlewares ./__json_server__/middlewares.js"
   },
   "eslintConfig": {
     "extends": [
@@ -46,6 +53,7 @@
   "devDependencies": {
     "@commitlint/cli": "^12.1.1",
     "@commitlint/config-conventional": "^12.1.1",
+    "@types/qs": "^6.9.6",
     "eslint-config-prettier": "^8.2.0",
     "exact": "^0.8.0",
     "husky": "^6.0.0",
@@ -61,5 +69,8 @@
   },
   "lint-staged": {
     "*.{js,css,md,ts,tsx}": "prettier --write"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
