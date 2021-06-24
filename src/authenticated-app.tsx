@@ -5,6 +5,7 @@ import { useAuth } from 'context/auto-context'
 import  styled from '@emotion/styled'
 import { ProjectListScreen } from 'screens/project-list'
 import { Dropdown, Menu, Button } from 'antd'
+import { ReactComponent as Logo} from 'assets/logo.svg'
 export const AuthenticatedApp = () => {
   const { logout, user } = useAuth()
 
@@ -19,7 +20,7 @@ export const AuthenticatedApp = () => {
     <Container>
       <Header between={true}>
         <HeaderLeft gap={true}>
-          <h3>LOGO</h3>
+          <Logo width={'30rem'} height={'4rem'} color={'rgb(38, 132, 255)'}></Logo>
           <h3>项目</h3>
           <h3>用户</h3>
         </HeaderLeft>
