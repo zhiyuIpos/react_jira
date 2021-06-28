@@ -3,16 +3,24 @@ import { Form, Input } from 'antd'
 import {LongButton} from './index'
 
 import { useAuth } from 'context/auto-context'
+import { useAsync } from 'utils/use-async'
 
 // const apiUrl = process.env.REACT_APP_API_URL
-export const LoginScreen = () => {
+export const LoginScreen = ({ onError }: { onError: (error:Error) => void}) => {
   const { login } = useAuth()
-  const handleSubmit = (values: {username: string, password: string}) => {
+  const { run, isLoading } = useAsync(undefined, { throwOnError: true})
+  const handleSubmit = async (values: {username: string, password: string}) => {
     // event: FormEvent<HTMLFormElement>
     // event.preventDefault()
     // const username = (event.currentTarget.elements[0] as HTMLInputElement).value
     // const password = (event.currentTarget.elements[1] as HTMLInputElement).value
-    login(values)
+    try {
+      // await login(values)
+      await run(login(values))
+    } catch(e) {
+      onError(e)
+    }
+    
   }
   // const login = (params: {username: string, password :string }) => {
   //   fetch(`${apiUrl}/login`, {
@@ -51,7 +59,7 @@ export const LoginScreen = () => {
       <Input placeholder={'密码'} type="password" id={"password"} />
     </Form.Item>
     <Form.Item>
-      <LongButton htmlType={'submit'} type={'primary'}>登录</LongButton>
+      <LongButton loading={isLoading} htmlType={'submit'} type={'primary'}>登录</LongButton>
     </Form.Item>
   </Form>
 }
