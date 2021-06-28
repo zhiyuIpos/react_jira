@@ -5,10 +5,13 @@ import logo from 'assets/logo.svg'
 
 import { RegisterScreen } from 'unauthenticated-app/register'
 import { LoginScreen } from 'unauthenticated-app/login'
+import { useDocumentTitle } from "utils"
 
 export const UnauthenticatedApp = () => {
   const [isRegister, setIsRegister] = useState(false)
   const [error, setError] = useState<Error | null>(null)
+
+  useDocumentTitle('请登录或者注册')
   return <Container>
     <ShadowCard>
       <Header />
