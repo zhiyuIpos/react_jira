@@ -1,7 +1,7 @@
 import { SearchPanel } from "./search-panel"
 import { List } from './list'
 import { useEffect, useState } from "react"
-import { cleanObject, useMount, useDebounce } from "utils"
+import { cleanObject, useMount, useDebounce, useDocumentTitle } from "utils"
 import { useAsync } from 'utils/use-async'
 import { useHttp } from "utils/http"
 import { Project } from 'screens/project-list/list'
@@ -18,6 +18,7 @@ export const ProjectListScreen = () => {
     name: '',
     personId: ''
   })
+  useDocumentTitle('项目列表', false)
   const debounceParam = useDebounce(param, 2000)
   // const [list, setList] = useState([])
 

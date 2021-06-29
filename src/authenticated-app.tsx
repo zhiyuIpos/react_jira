@@ -4,11 +4,29 @@ import { Row } from 'components/lib'
 import { useAuth } from 'context/auto-context'
 import  styled from '@emotion/styled'
 import { ProjectListScreen } from 'screens/project-list'
+import { ProjectScreen } from 'screens/project-screen'
 import { Dropdown, Menu, Button } from 'antd'
 import { ReactComponent as Logo} from 'assets/logo.svg'
+import { Navigate, Route, Routes } from 'react-router'
+import { BrowserRouter as Router } from 'react-router-dom'
 export const AuthenticatedApp = () => {
-  const { logout, user } = useAuth()
+  return (
+    <Container>
+      <PageHeader />
+      <Main>
+        <Router>
+          <Routes>
+            <Route path={'/projects'} element={<ProjectListScreen />} />
+            <Route path={'/projects/:projectId/*'} element={<ProjectScreen />} />
+          </Routes>
+        </Router>
+      </Main>
+    </Container>
+  )
+}
 
+const PageHeader = () => {
+  const { logout, user } = useAuth()
   const menu = (
     <Menu>
       <Menu.Item key={'logout'}>
@@ -17,25 +35,20 @@ export const AuthenticatedApp = () => {
     </Menu>
   )
   return (
-    <Container>
-      <Header between={true}>
-        <HeaderLeft gap={true}>
-          <Logo width={'30rem'} height={'4rem'} color={'rgb(38, 132, 255)'}></Logo>
-          <h3>项目</h3>
-          <h3>用户</h3>
-        </HeaderLeft>
-        <HeaderRight>
-          <Dropdown overlay={menu}>
-            <Button type={'link'} onClick={e => e.preventDefault()}>
-              Hi, {user?.name}
-            </Button>
-          </Dropdown>
-        </HeaderRight>
-      </Header>
-      <Main>
-        <ProjectListScreen />
-      </Main>
-    </Container>
+    <Header between={true}>
+      <HeaderLeft gap={true}>
+        <Logo width={'30rem'} height={'4rem'} color={'rgb(38, 132, 255)'}></Logo>
+        <h3>项目</h3>
+        <h3>用户</h3>
+      </HeaderLeft>
+      <HeaderRight>
+        <Dropdown overlay={menu}>
+          <Button type={'link'} onClick={e => e.preventDefault()}>
+            Hi, {user?.name}
+          </Button>
+        </Dropdown>
+      </HeaderRight>
+    </Header>
   )
 }
 
