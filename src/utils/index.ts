@@ -71,3 +71,5 @@ export const useDocumentTitle = (title:string, keepOnUnmount:boolean = true) => 
     }
   }, [keepOnUnmount, oldTitle])
 }
+
+export const resetRoute = () => window.location.href = window.location.origin

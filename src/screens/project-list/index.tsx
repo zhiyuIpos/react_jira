@@ -8,17 +8,19 @@ import { Project } from 'screens/project-list/list'
 import styled from "@emotion/styled"
 import { useProjects } from "utils/project"
 import { useUsers } from "utils/user"
+import { useUrlQueryParam } from "utils/url"
 
 // import * as qs from 'qs'
 
 // const apiUrl = process.env.REACT_APP_API_URL
 
 export const ProjectListScreen = () => {
-  const [param, setParam] = useState({
-    name: '',
-    personId: ''
-  })
+  // const [, setParam] = useState({
+  //   name: '',
+  //   personId: ''
+  // })
   useDocumentTitle('项目列表', false)
+  const [param, setParam] = useUrlQueryParam(['name', 'personId'])
   const debounceParam = useDebounce(param, 2000)
   // const [list, setList] = useState([])
 
@@ -46,6 +48,7 @@ export const ProjectListScreen = () => {
   </Container>
 }
 
+ProjectListScreen.whyDidYouRender = false
 const Container = styled.div`
   padding: 3.2rem ;
 `

@@ -5,6 +5,7 @@ import { useAuth } from 'context/auto-context'
 import  styled from '@emotion/styled'
 import { ProjectListScreen } from 'screens/project-list'
 import { ProjectScreen } from 'screens/project-screen'
+import { resetRoute } from 'utils'
 import { Dropdown, Menu, Button } from 'antd'
 import { ReactComponent as Logo} from 'assets/logo.svg'
 import { Navigate, Route, Routes } from 'react-router'
@@ -18,6 +19,7 @@ export const AuthenticatedApp = () => {
           <Routes>
             <Route path={'/projects'} element={<ProjectListScreen />} />
             <Route path={'/projects/:projectId/*'} element={<ProjectScreen />} />
+            <Navigate to={window.location.pathname + '/projects'} />
           </Routes>
         </Router>
       </Main>
@@ -37,7 +39,9 @@ const PageHeader = () => {
   return (
     <Header between={true}>
       <HeaderLeft gap={true}>
-        <Logo width={'30rem'} height={'4rem'} color={'rgb(38, 132, 255)'}></Logo>
+        <Button type={'link'} onClick={resetRoute}>
+          <Logo width={'30rem'} height={'4rem'} color={'rgb(38, 132, 255)'}></Logo>
+        </Button>
         <h3>项目</h3>
         <h3>用户</h3>
       </HeaderLeft>
